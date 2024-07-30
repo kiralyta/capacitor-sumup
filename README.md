@@ -34,7 +34,6 @@ Coming soon...
 
 <docgen-index>
 
-* [`initialize(...)`](#initialize)
 * [`login(...)`](#login)
 * [`checkout(...)`](#checkout)
 * [`wakeUp()`](#wakeup)
@@ -45,32 +44,17 @@ Coming soon...
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-### initialize(...)
-
-```typescript
-initialize(options: { affiliateKey: string; }) => Promise<void>
-```
-
-Init the interface with an affiliate key, generated on SumUp dev portal.
-
-| Param         | Type                                   |
-| ------------- | -------------------------------------- |
-| **`options`** | <code>{ affiliateKey: string; }</code> |
-
---------------------
-
-
 ### login(...)
 
 ```typescript
-login(options: { accessToken: string; }) => Promise<void>
+login(options: LoginOptions) => Promise<void>
 ```
 
-Login with an access token, retrieved from SumUp API.
+Login to a SumUp account.
 
-| Param         | Type                                  |
-| ------------- | ------------------------------------- |
-| **`options`** | <code>{ accessToken: string; }</code> |
+| Param         | Type                                                  |
+| ------------- | ----------------------------------------------------- |
+| **`options`** | <code><a href="#loginoptions">LoginOptions</a></code> |
 
 --------------------
 
@@ -98,7 +82,7 @@ Make a payment on a card reader. Everything is handled by the internal SDKs.
 wakeUp() => Promise<void>
 ```
 
-Prepare the connected card reader for an upcoming checkout
+Prepare the connected card reader for a possible upcoming checkout.
 
 --------------------
 
@@ -106,23 +90,31 @@ Prepare the connected card reader for an upcoming checkout
 ### Interfaces
 
 
+#### LoginOptions
+
+| Prop               | Type                | Description                                     |
+| ------------------ | ------------------- | ----------------------------------------------- |
+| **`affiliateKey`** | <code>string</code> | Affiliate key generated on the SumUp dev portal |
+| **`accessToken`**  | <code>string</code> | Access token retrieved from SumUp API           |
+
+
 #### CheckoutResult
 
-| Prop                  | Type                                 | Description                                        |
-| --------------------- | ------------------------------------ | -------------------------------------------------- |
-| **`transactionCode`** | <code>string</code>                  | Unique SumUp transaction ID of successful payment. |
-| **`additionalInfo`**  | <code>{ [key: string]: any; }</code> |                                                    |
+| Prop                  | Type                                 | Description                                       |
+| --------------------- | ------------------------------------ | ------------------------------------------------- |
+| **`transactionCode`** | <code>string</code>                  | Unique SumUp transaction ID of successful payment |
+| **`additionalInfo`**  | <code>{ [key: string]: any; }</code> | Additional infos returned by the SDKs             |
 
 
 #### CheckoutOptions
 
-| Prop                       | Type                         | Description                                                              |
-| -------------------------- | ---------------------------- | ------------------------------------------------------------------------ |
-| **`amount`**               | <code>number</code>          | Amount to be charged                                                     |
-| **`currencyCode`**         | <code>string \| null</code>  | ISO 4217 currency code. Defaults to HUF.                                 |
-| **`title`**                | <code>string \| null</code>  | Message to be shown on specific card readers. Defaults to "Time to Pay". |
-| **`foreignTransactionID`** | <code>string \| null</code>  | Unique ID of the transaction on client side (optional)                   |
-| **`tipAmount`**            | <code>number \| null</code>  | Amount to tip, works only on specific card readers.                      |
-| **`skipReceiptScreen`**    | <code>boolean \| null</code> | Whether to skip the receipt screen on successful payment.                |
+| Prop                       | Type                         | Description                                                             |
+| -------------------------- | ---------------------------- | ----------------------------------------------------------------------- |
+| **`amount`**               | <code>number</code>          | Amount to be charged                                                    |
+| **`currencyCode`**         | <code>string \| null</code>  | ISO 4217 currency code. Defaults to HUF                                 |
+| **`title`**                | <code>string \| null</code>  | Message to be shown on specific card readers. Defaults to "Time to Pay" |
+| **`foreignTransactionID`** | <code>string \| null</code>  | Unique ID of the transaction on client side (optional)                  |
+| **`tipAmount`**            | <code>number \| null</code>  | Amount to tip, works only on specific card readers                      |
+| **`skipReceiptScreen`**    | <code>boolean \| null</code> | Whether to skip the receipt screen on successful payment                |
 
 </docgen-api>

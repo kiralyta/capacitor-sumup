@@ -11,20 +11,16 @@ public class SumUpPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "SumUpPlugin"
     public let jsName = "SumUp"
     public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "initialize", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "login", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "checkout", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "wakeUp", returnType: CAPPluginReturnPromise)
     ]
 
-    @objc func initialize(_ call: CAPPluginCall) {
+    @objc func login(_ call: CAPPluginCall) {
         let affiliateKey = call.getString("affiliateKey") ?? ""
+        let accessToken = call.getString("accessToken") ?? ""
 
         SumUpSDK.setup(withAPIKey: affiliateKey)
-    }
-
-    @objc func login(_ call: CAPPluginCall) {
-        let accessToken = call.getString("accessToken") ?? ""
 
         SumUpSDK.login(withToken: accessToken) { success, error in
             if success {
