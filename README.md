@@ -21,26 +21,22 @@ NSBluetoothPeripheralUsageDescription (unless your deployment target is at least
 
 <docgen-index>
 
-* [`echo(...)`](#echo)
+* [`wakeUp()`](#wakeup)
 * [`initialize(...)`](#initialize)
 * [`login(...)`](#login)
+* [`checkout(...)`](#checkout)
+* [Interfaces](#interfaces)
 
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-### echo(...)
+### wakeUp()
 
 ```typescript
-echo(options: { value: string; }) => Promise<{ value: string; }>
+wakeUp() => Promise<void>
 ```
-
-| Param         | Type                            |
-| ------------- | ------------------------------- |
-| **`options`** | <code>{ value: string; }</code> |
-
-**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
 
 --------------------
 
@@ -69,5 +65,42 @@ login(options: { accessToken: string; }) => Promise<void>
 | **`options`** | <code>{ accessToken: string; }</code> |
 
 --------------------
+
+
+### checkout(...)
+
+```typescript
+checkout(options: CheckoutOptions) => Promise<CheckoutResult>
+```
+
+| Param         | Type                                                        |
+| ------------- | ----------------------------------------------------------- |
+| **`options`** | <code><a href="#checkoutoptions">CheckoutOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#checkoutresult">CheckoutResult</a>&gt;</code>
+
+--------------------
+
+
+### Interfaces
+
+
+#### CheckoutResult
+
+| Prop                  | Type                                 |
+| --------------------- | ------------------------------------ |
+| **`transactionCode`** | <code>string</code>                  |
+| **`additionalInfo`**  | <code>{ [key: string]: any; }</code> |
+
+
+#### CheckoutOptions
+
+| Prop                       | Type                        |
+| -------------------------- | --------------------------- |
+| **`amount`**               | <code>number</code>         |
+| **`currencyCode`**         | <code>string \| null</code> |
+| **`title`**                | <code>string \| null</code> |
+| **`foreignTransactionID`** | <code>string \| null</code> |
+| **`tipAmount`**            | <code>number \| null</code> |
 
 </docgen-api>

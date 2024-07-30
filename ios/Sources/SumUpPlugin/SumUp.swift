@@ -6,8 +6,4 @@ import SumUpSDK
         print(value)
         return value
     }
-
-    @objc public func initialize(_ affiliateKey: String) {
-        SumUpSDK.setup(withAPIKey: affiliateKey)
-    }
 }
