@@ -21,6 +21,15 @@ export interface SumUpPlugin {
   wakeUp(): Promise<void>;
 }
 
+export interface CheckoutResult {
+
+  /**
+   * Unique SumUp transaction ID of successful payment.
+   */
+  transactionCode: string;
+  additionalInfo: { [key: string]: any };
+}
+
 export interface CheckoutOptions {
 
   /**
@@ -52,13 +61,4 @@ export interface CheckoutOptions {
    * Whether to skip the receipt screen on successful payment.
    */
   skipReceiptScreen?: boolean | null;
-}
-
-export interface CheckoutResult {
-
-  /**
-   * Unique SumUp transaction ID of successful payment.
-   */
-  transactionCode: string;
-  additionalInfo: { [key: string]: any };
 }

@@ -1,6 +1,6 @@
-# capacitor-sumup
+# Capacitor.js SumUp plugin
 
-A Capacitor.js bridge to SumUp native SDKs
+A Capacitor.js bridge to SumUp native SDKs.
 
 ## Install
 
@@ -11,14 +11,14 @@ npx cap sync
 
 ## Permissions
 
-# iOS
+### iOS
 ```
 NSLocationWhenInUseUsageDescription
 NSBluetoothAlwaysUsageDescription
 NSBluetoothPeripheralUsageDescription (unless your deployment target is at least iOS 13)
 ```
 
-# Android
+### Android
 
 Coming soon...
 
