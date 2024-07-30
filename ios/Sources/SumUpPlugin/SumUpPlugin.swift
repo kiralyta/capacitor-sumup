@@ -11,21 +11,16 @@ public class SumUpPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "SumUpPlugin"
     public let jsName = "SumUp"
     public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "echo", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "initialize", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "wakeUp", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "login", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "checkout", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "checkout", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "wakeUp", returnType: CAPPluginReturnPromise)
     ]
 
     @objc func initialize(_ call: CAPPluginCall) {
         let affiliateKey = call.getString("affiliateKey") ?? ""
 
         SumUpSDK.setup(withAPIKey: affiliateKey)
-    }
-
-    @objc func wakeUp(_ call: CAPPluginCall) {
-        SumUpSDK.prepareForCheckout()
     }
 
     @objc func login(_ call: CAPPluginCall) {
@@ -49,14 +44,23 @@ public class SumUpPlugin: CAPPlugin, CAPBridgedPlugin {
         let title = call.getString("title") ?? "Time to Pay"
         let foreignTransactionID = call.getString("foreignTransactionID") ?? ""
         let tipAmount = call.getDouble("tipAmount") ?? 0.00
+        let skipReceiptScreen = call.getBool("skipReceiptScreen") ?? true
 
         // setup payment request
         let request = CheckoutRequest(total: NSDecimalNumber(value: amount),
                                       title: title,
                                       currencyCode: currencyCode)
 
+        // Set Tip Amount
         request.tipAmount = NSDecimalNumber(value: tipAmount)
+
+        // Set Foreign Transaction ID
         request.foreignTransactionID = foreignTransactionID
+
+        // Set Skip Receipt Screen
+        if skipReceiptScreen {
+            request.skipScreenOptions = .success
+        }
 
         // Obtain the current view controller
         guard let viewController = bridge?.viewController else {
@@ -97,5 +101,9 @@ public class SumUpPlugin: CAPPlugin, CAPBridgedPlugin {
             // something went wrong: checkout was not started
             call.reject("Checkout failed")
         }
+    }
+
+    @objc func wakeUp(_ call: CAPPluginCall) {
+        SumUpSDK.prepareForCheckout()
     }
 }

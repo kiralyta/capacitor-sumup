@@ -9,22 +9,27 @@ npm install capacitor-sumup
 npx cap sync
 ```
 
-## Update Your Info.plist file
+## Permissions
 
+# iOS
 ```
 NSLocationWhenInUseUsageDescription
 NSBluetoothAlwaysUsageDescription
 NSBluetoothPeripheralUsageDescription (unless your deployment target is at least iOS 13)
 ```
 
+# Android
+
+Coming soon...
+
 ## API
 
 <docgen-index>
 
-* [`wakeUp()`](#wakeup)
 * [`initialize(...)`](#initialize)
 * [`login(...)`](#login)
 * [`checkout(...)`](#checkout)
+* [`wakeUp()`](#wakeup)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -32,20 +37,13 @@ NSBluetoothPeripheralUsageDescription (unless your deployment target is at least
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-### wakeUp()
-
-```typescript
-wakeUp() => Promise<void>
-```
-
---------------------
-
-
 ### initialize(...)
 
 ```typescript
 initialize(options: { affiliateKey: string; }) => Promise<void>
 ```
+
+Init the interface with an affiliate key, generated on SumUp dev portal.
 
 | Param         | Type                                   |
 | ------------- | -------------------------------------- |
@@ -60,6 +58,8 @@ initialize(options: { affiliateKey: string; }) => Promise<void>
 login(options: { accessToken: string; }) => Promise<void>
 ```
 
+Login with an access token, retrieved from SumUp API.
+
 | Param         | Type                                  |
 | ------------- | ------------------------------------- |
 | **`options`** | <code>{ accessToken: string; }</code> |
@@ -73,6 +73,8 @@ login(options: { accessToken: string; }) => Promise<void>
 checkout(options: CheckoutOptions) => Promise<CheckoutResult>
 ```
 
+Make a payment on a card reader. Everything is handled by the internal SDKs.
+
 | Param         | Type                                                        |
 | ------------- | ----------------------------------------------------------- |
 | **`options`** | <code><a href="#checkoutoptions">CheckoutOptions</a></code> |
@@ -82,25 +84,37 @@ checkout(options: CheckoutOptions) => Promise<CheckoutResult>
 --------------------
 
 
+### wakeUp()
+
+```typescript
+wakeUp() => Promise<void>
+```
+
+Prepare the connected card reader for an upcoming checkout
+
+--------------------
+
+
 ### Interfaces
 
 
 #### CheckoutResult
 
-| Prop                  | Type                                 |
-| --------------------- | ------------------------------------ |
-| **`transactionCode`** | <code>string</code>                  |
-| **`additionalInfo`**  | <code>{ [key: string]: any; }</code> |
+| Prop                  | Type                                 | Description                                        |
+| --------------------- | ------------------------------------ | -------------------------------------------------- |
+| **`transactionCode`** | <code>string</code>                  | Unique SumUp transaction ID of successful payment. |
+| **`additionalInfo`**  | <code>{ [key: string]: any; }</code> |                                                    |
 
 
 #### CheckoutOptions
 
-| Prop                       | Type                        |
-| -------------------------- | --------------------------- |
-| **`amount`**               | <code>number</code>         |
-| **`currencyCode`**         | <code>string \| null</code> |
-| **`title`**                | <code>string \| null</code> |
-| **`foreignTransactionID`** | <code>string \| null</code> |
-| **`tipAmount`**            | <code>number \| null</code> |
+| Prop                       | Type                         | Description                                                              |
+| -------------------------- | ---------------------------- | ------------------------------------------------------------------------ |
+| **`amount`**               | <code>number</code>          | Amount to be charged                                                     |
+| **`currencyCode`**         | <code>string \| null</code>  | ISO 4217 currency code. Defaults to HUF.                                 |
+| **`title`**                | <code>string \| null</code>  | Message to be shown on specific card readers. Defaults to "Time to Pay". |
+| **`foreignTransactionID`** | <code>string \| null</code>  | Unique ID of the transaction on client side (optional)                   |
+| **`tipAmount`**            | <code>number \| null</code>  | Amount to tip, works only on specific card readers.                      |
+| **`skipReceiptScreen`**    | <code>boolean \| null</code> | Whether to skip the receipt screen on successful payment.                |
 
 </docgen-api>
