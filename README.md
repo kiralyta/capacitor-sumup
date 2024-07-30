@@ -19,8 +19,6 @@ await SumUp.initialize({ affiliateKey: 'YOUR-AFFILIATE-KEY' })
 
 ## Permissions
 
-> The minSdkVersion must be at least 26 in your Capacitor.js project.
-
 ### iOS (update your Info.plist file)
 ```
 NSLocationWhenInUseUsageDescription
@@ -31,6 +29,8 @@ NSBluetoothPeripheralUsageDescription (unless your deployment target is at least
 ### Android
 
 Coming soon...
+
+> The minSdkVersion must be at least 26 in your Capacitor.js project.
 
 ## API
 
