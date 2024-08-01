@@ -14,7 +14,10 @@ Import it into your project and enjoy the ride.
 ```javascript
 import { SumUp } from 'capacitor-sumup'
 
-await SumUp.initialize({ affiliateKey: 'YOUR-AFFILIATE-KEY' })
+await SumUp.login({
+    affiliateKey: 'YOUR-AFFILIATE-KEY',
+    accessToken: 'YOUR-ACCESS-TOKEN'
+})
 ```
 
 ## Permissions
