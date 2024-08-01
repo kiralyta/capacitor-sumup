@@ -13,6 +13,11 @@ import com.sumup.merchant.reader.api.SumUpPayment;
 @CapacitorPlugin(name = "SumUp")
 public class SumUpPlugin extends Plugin {
 
+    // @Override
+    // public void load() {
+    //     SumUpState.init(getContext());
+    // }
+
     @PluginMethod
     public void login(PluginCall call) {
         if (!call.getData().has("affiliateKey")) {
