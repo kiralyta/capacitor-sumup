@@ -14,6 +14,11 @@ export interface SumUpPlugin {
    * Prepare the connected card reader for a possible upcoming checkout.
    */
   wakeUp(): Promise<void>;
+
+  /**
+   * Disconnect and logout.
+   */
+  logout(): Promise<void>;
 }
 
 export interface LoginOptions {

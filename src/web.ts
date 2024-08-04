@@ -15,4 +15,8 @@ export class SumUpWeb extends WebPlugin implements SumUpPlugin {
   async wakeUp(): Promise<void> {
     throw this.unimplemented('Not implemented on web.');
   }
+
+  async logout(): Promise<void> {
+    throw this.unimplemented('Not implemented on web.');
+  }
 }

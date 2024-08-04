@@ -42,6 +42,7 @@ Coming soon...
 * [`login(...)`](#login)
 * [`checkout(...)`](#checkout)
 * [`wakeUp()`](#wakeup)
+* [`logout()`](#logout)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -88,6 +89,17 @@ wakeUp() => Promise<void>
 ```
 
 Prepare the connected card reader for a possible upcoming checkout.
+
+--------------------
+
+
+### logout()
+
+```typescript
+logout() => Promise<void>
+```
+
+Disconnect and logout.
 
 --------------------
 

@@ -13,7 +13,8 @@ public class SumUpPlugin: CAPPlugin, CAPBridgedPlugin {
     public let pluginMethods: [CAPPluginMethod] = [
         CAPPluginMethod(name: "login", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "checkout", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "wakeUp", returnType: CAPPluginReturnPromise)
+        CAPPluginMethod(name: "wakeUp", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "logout", returnType: CAPPluginReturnPromise)
     ]
 
     @objc func login(_ call: CAPPluginCall) {
@@ -101,5 +102,9 @@ public class SumUpPlugin: CAPPlugin, CAPBridgedPlugin {
 
     @objc func wakeUp(_ call: CAPPluginCall) {
         SumUpSDK.prepareForCheckout()
+    }
+
+    @objc func logout(_ call: CAPPluginCall) {
+        SumUpSDK.logout()
     }
 }
