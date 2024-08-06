@@ -20,7 +20,7 @@ await SumUp.login({
 })
 ```
 
-## Permissions
+## Setup
 
 ### iOS (update your Info.plist file)
 ```
@@ -31,9 +31,23 @@ NSBluetoothPeripheralUsageDescription (unless your deployment target is at least
 
 ### Android
 
-Coming soon...
+Add the repository to your gradle dependencies (to your root build.gradle file)
 
-> The minSdkVersion must be at least 26 in your Capacitor.js project.
+```
+allprojects {
+   repositories {
+      maven { url 'https://maven.sumup.com/releases' }
+   }
+}
+```
+
+Add the dependency to a module (to your module's build.gradle file)
+
+```
+implementation 'com.sumup:merchant-sdk:5.0.1'
+```
+
+> Also, the minSdkVersion must be at least 26 in your Capacitor.js project.
 
 ## API
 

@@ -7,20 +7,12 @@ ext {
 
 buildscript {
     repositories {
-        google()
-        // mavenCentral()
         jcenter()
+        google()
+        maven { url 'https://maven.sumup.com/releases' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.2.1'
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        maven { url 'https://maven.sumup.com/releases' }
-        jcenter()
     }
 }
 
@@ -50,6 +42,20 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 }
+
+// repositories {
+//     google()
+//     mavenCentral()
+// }
+
+allprojects {
+    repositories {
+        google()
+        maven { url 'https://maven.sumup.com/releases' }
+        jcenter()
+    }
+}
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
